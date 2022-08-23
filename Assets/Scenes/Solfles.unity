@@ -917,21 +917,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7729531292701660900, guid: 5b009524e41916847a3d0087aaa8d688,
-        type: 3}
-      propertyPath: m_FollowOffset.x
-      value: -7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7729531292701660900, guid: 5b009524e41916847a3d0087aaa8d688,
-        type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7729531292701660900, guid: 5b009524e41916847a3d0087aaa8d688,
-        type: 3}
-      propertyPath: m_FollowOffset.z
-      value: -7.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682118, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_Name
