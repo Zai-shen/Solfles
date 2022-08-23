@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
@@ -871,27 +871,27 @@ PrefabInstance:
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.85866314
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268346
+      value: 0.3409561
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000022481224
+      value: 0.35566992
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000093120285
+      value: -0.14122863
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
@@ -917,6 +917,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7729531292701660900, guid: 5b009524e41916847a3d0087aaa8d688,
+        type: 3}
+      propertyPath: m_FollowOffset.x
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729531292701660900, guid: 5b009524e41916847a3d0087aaa8d688,
+        type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729531292701660900, guid: 5b009524e41916847a3d0087aaa8d688,
+        type: 3}
+      propertyPath: m_FollowOffset.z
+      value: -7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682118, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_Name
@@ -940,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
@@ -950,27 +965,27 @@ PrefabInstance:
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.85866314
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268346
+      value: 0.3409561
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000022481224
+      value: 0.35566992
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000093120285
+      value: -0.14122863
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;   
     private CharacterController _characterController;
 
+    Matrix4x4 isoFix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
     [SerializeField] private Vector3 _currentMovement;
     private void Awake()
     {
@@ -35,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         
         _currentMovement = new Vector3(horizontalInput, 0, verticalInput);
+        _currentMovement = isoFix.MultiplyPoint3x4(_currentMovement);
         _currentMovement.Normalize();
+        
 
         Animate();
     }
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _animator.SetTrigger("Jumping");//Play("JoyfulJump");
+            _animator.SetTrigger("Jumping");
         }
     }
 }

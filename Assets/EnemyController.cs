@@ -6,8 +6,26 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public bool UseLookRadius = false;
-    public float LookRadius = 10f;
+    public bool UseAggroRadius = false;
+    public float AggroRadius = 10f;
+
+    public LayerMask GroundM, PlayerM;
+
+    #region Patroling
+    
+    public Vector3 walkPoint;
+    private bool walkPointSet;
+    public float walkPointRange;
+    
+    #endregion
+
+    #region Attacking
+
+    public float timeBetweenAttacks;
+    private bool alreadyAttacked;
+
+    #endregion
+
 
     private Transform _target;
     private NavMeshAgent _agent;
@@ -24,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         float distance = Vector3.Distance(_target.position, transform.position);
 
-        if (!UseLookRadius || (distance <= LookRadius))
+        if (!UseAggroRadius || (distance <= AggroRadius))
         {
             _agent.SetDestination(_target.position);
 
@@ -48,9 +66,9 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        if (UseLookRadius)
+        if (UseAggroRadius)
         {
-            Gizmos.DrawWireSphere(transform.position, LookRadius);
+            Gizmos.DrawWireSphere(transform.position, AggroRadius);
         }
         Gizmos.DrawLine(transform.position, _target ? _target.position : Vector3.zero );
     }
