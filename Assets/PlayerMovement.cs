@@ -21,12 +21,45 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Run();
+        Jump();
     }
-    
+
+    private void FixedUpdate()
+    {
+        DoRun();
+    }
+
     void Run()
     {
-        _currentMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        _characterController.Move(_currentMovement * Time.deltaTime * MovementSpeed);
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        
+        _currentMovement = new Vector3(horizontalInput, 0, verticalInput);
+        _currentMovement.Normalize();
+
+        Animate();
+    }
+
+    private void Animate()
+    {
+        if (_currentMovement != Vector3.zero)
+        {
+            transform.forward = _currentMovement;
+        }
+
         _animator.SetFloat("MovSpeed", _currentMovement.magnitude);
+    }
+
+    void DoRun()
+    {
+        _characterController.Move(_currentMovement * Time.deltaTime * MovementSpeed);
+    }
+    
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _animator.SetTrigger("Jumping");//Play("JoyfulJump");
+        }
     }
 }
