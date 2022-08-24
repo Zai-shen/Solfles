@@ -103,11 +103,11 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
-        if (alreadyAttacked) return;
-        
         _agent.SetDestination(transform.position);
         FaceTarget();
         
+        if (alreadyAttacked) return;
+
         //Do Attack here
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.localScale = Vector3.one / 10f;
