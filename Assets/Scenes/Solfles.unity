@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.3
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.1
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -779,56 +779,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: AggroRange
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: SightRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: AttackRange
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: UsePatroling
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: UseAggroRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: GroundM.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: PlayerM.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: WalkPointRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 547338218315997977, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: TimeBetweenAttacks
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3694515993868538811, guid: acac8ae9cb47164488093407c6a16152,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7001207667634100444, guid: acac8ae9cb47164488093407c6a16152,
         type: 3}
       propertyPath: m_Name

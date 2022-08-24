@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
 
     #region Navigation
 
+    private float _distanceToPlayer;
     private Transform _target;
     private NavMeshAgent _agent;
     
@@ -53,22 +54,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(_target.position, transform.position);
+        _distanceToPlayer = Vector3.Distance(_target.position, transform.position);
         PlayerInSightRange = Physics.CheckSphere(transform.position, AggroRange, PlayerM);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, AttackRange, PlayerM);
         
-        if (!UseAggroRange || (distance <= AggroRange))
+        if (!UseAggroRange || (_distanceToPlayer <= AggroRange))
         {
 
             if (PlayerInSightRange && !PlayerInAttackRange) ChasePlayer();
             if (PlayerInSightRange && PlayerInAttackRange) Attack();
             {
                 
-            }
-            
-            if (distance <= _agent.stoppingDistance)
-            {
-                FaceTarget();
             }
         }
         else
@@ -116,8 +112,7 @@ public class EnemyController : MonoBehaviour
             _agent.SetDestination(WalkPoint);
         }
 
-        Vector3 distanceToWalkPoint = transform.position - WalkPoint;
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (_agent.remainingDistance <= _agent.stoppingDistance)
         {
             walkPointSet = false;
         }
@@ -127,10 +122,11 @@ public class EnemyController : MonoBehaviour
     {
         float randomX = Random.Range(-WalkPointRange, WalkPointRange);
         float randomZ = Random.Range(-WalkPointRange, WalkPointRange);
+        float height = 2f;
 
-        WalkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        WalkPoint = new Vector3(transform.position.x + randomX, transform.position.y + height, transform.position.z + randomZ);
 
-        if (Physics.Raycast(WalkPoint, -transform.up, 2f, GroundM))
+        if (Physics.Raycast(WalkPoint, -transform.up, 5f, GroundM))
         {
             walkPointSet = true;
         }
@@ -138,11 +134,7 @@ public class EnemyController : MonoBehaviour
     
     void FaceTarget()
     {
-        Vector3 direction = (_target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 6f);
-        
-        //transform.LookAt(target)
+        transform.LookAt(new Vector3(_target.position.x, transform.position.y, _target.position.z));
     }
     
     private void OnDrawGizmosSelected()
@@ -153,6 +145,12 @@ public class EnemyController : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, AggroRange);
         }
 
+        if (UsePatroling)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, WalkPoint);
+        }
+        
         if (PlayerInSightRange)
         {
             Gizmos.color = Color.yellow;
