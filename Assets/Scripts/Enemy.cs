@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class EnemyController : MonoBehaviour
+[RequireComponent(typeof(Attack))]
+public class Enemy : MonoBehaviour
 {
 
-    public LayerMask GroundM, PlayerM, IgnoreSightCheck;
+    public LayerMask PlayerM, IgnoreSightCheck;
 
     #region Patroling
 
@@ -23,9 +24,7 @@ public class EnemyController : MonoBehaviour
 
     #region Attacking
 
-    public float AttackRange;
-    public float TimeBetweenAttacks;
-    private bool alreadyAttacked;
+    private Attack _attack;
 
     #endregion
 
@@ -46,19 +45,25 @@ public class EnemyController : MonoBehaviour
 
     
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _navMeshPath = new NavMeshPath();
+    }
+
+    private void Start()
+    {
         _target = PlayerManager.Instance.Player.transform;
+        _attack = GetComponent<Attack>();
+        _attack.Target = _target;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        _distanceToPlayer = Vector3.Distance(_target.position, transform.position);
+        _distanceToPlayer = DistanceToPlayer();
         PlayerInSight = !CheckPlayerIsOccluded();
-        PlayerInAttackRange = Physics.CheckSphere(transform.position, AttackRange, PlayerM);
+        PlayerInAttackRange = CheckPlayerInAttackRange();
 
         if (UseAggroRange)
         {
@@ -74,6 +79,16 @@ public class EnemyController : MonoBehaviour
             ChasePlayer();
             if (PlayerInSight && PlayerInAttackRange) Attack();
         }
+    }
+
+    private float DistanceToPlayer()
+    {
+        return Vector3.Distance(_target.position, transform.position);
+    }
+
+    private bool CheckPlayerInAttackRange()
+    {
+        return Physics.CheckSphere(transform.position, _attack.AttackRange, PlayerM);
     }
 
     private bool CheckPlayerIsOccluded()
@@ -106,22 +121,7 @@ public class EnemyController : MonoBehaviour
         _agent.SetDestination(transform.position);
         FaceTarget();
         
-        if (alreadyAttacked) return;
-
-        //Do Attack here
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.localScale = Vector3.one / 10f;
-        cube.transform.position = transform.position + new Vector3(0,0.5f,0);
-        Rigidbody rb = cube.AddComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            
-        alreadyAttacked = true;
-        Invoke(nameof(ResetAttack), TimeBetweenAttacks);
-    }
-
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
+        _attack.DoAttack();
     }
 
     private void ChasePlayer()
@@ -153,7 +153,7 @@ public class EnemyController : MonoBehaviour
 
         WalkPoint = transform.position + _difference;
         
-        if (_agent.CalculatePath(WalkPoint, _navMeshPath))//Physics.Raycast(WalkPoint, -transform.up, 5f, GroundM))
+        if (_agent.CalculatePath(WalkPoint, _navMeshPath))
         {
             _walkPointSet = true;
         }else if (PlayerInAttackRange)
@@ -169,8 +169,11 @@ public class EnemyController : MonoBehaviour
     
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red; 
-        Gizmos.DrawWireSphere(transform.position, AttackRange);
+        if (_attack)
+        {
+            Gizmos.color = Color.red; 
+            Gizmos.DrawWireSphere(transform.position, _attack.AttackRange);
+        }
         
         if (UseAggroRange)
         {
