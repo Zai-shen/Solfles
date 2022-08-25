@@ -9,7 +9,7 @@ public class Cast : RangedAttack
         
         Debug.Log("RangedAttack base");
         GameObject shot = Instantiate(Projectile, transform.position + new Vector3(-0.3f, 1.3f, 0.3f), Quaternion.identity);
-        Rigidbody rb = shot.AddComponent<Rigidbody>();
+        Rigidbody rb = shot.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * 25f, ForceMode.Impulse);
     }
     

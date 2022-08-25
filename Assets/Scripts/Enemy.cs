@@ -68,9 +68,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _distanceToPlayer = DistanceToPlayer();
-        PlayerInSight = !CheckPlayerIsOccluded();
-        PlayerInAttackRange = CheckPlayerInAttackRange();
+        _distanceToPlayer = _attack.DistanceToTarget(_target);
+        PlayerInSight = !_attack.CheckTargetIsOccluded(_target, IgnoreSightCheck);
+        PlayerInAttackRange = _attack.CheckTargetInAttackRange(_target, PlayerM);
 
         if (UseAggroRange)
         {
@@ -86,41 +86,6 @@ public class Enemy : MonoBehaviour
             ChasePlayer();
             if (PlayerInSight && PlayerInAttackRange) Attack();
         }
-    }
-
-    private float DistanceToPlayer()
-    {
-        return Vector3.Distance(_target.position, transform.position);
-    }
-
-    private bool CheckPlayerInAttackRange()
-    {
-        return Physics.CheckSphere(transform.position, _attack.AttackRange, PlayerM);
-    }
-
-    private bool CheckPlayerIsOccluded()
-    {
-        bool occluded = true;
-        RaycastHit _hit;
-
-        for (float i = 0; i <= 1.2f; i += 0.4f)
-        {
-            Vector3 heightDifference = new(0,i,0);
-            Vector3 _dirToPlayer = (_target.transform.position + heightDifference) - (transform.position + heightDifference);
-            if (Physics.Raycast(transform.position + heightDifference, _dirToPlayer, out _hit, _distanceToPlayer, ~IgnoreSightCheck))
-            {
-                // Debug.DrawLine(transform.position, _dirToPlayer * _hit.distance, Color.black);
-                // Debug.Log($"Hit the following: {_hit.transform.name}");
-                occluded = true;
-            }
-            else
-            {
-                // Debug.DrawLine(transform.position + heightDifference, _dirToPlayer * 20f, Color.black);
-                return false;
-            }
-        }
-
-        return occluded;
     }
 
     private void Attack()

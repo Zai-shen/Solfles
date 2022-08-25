@@ -390,7 +390,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 206472794}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084857285}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1386bc37c7f7e13439bc72b3be4bf57b, type: 3}
@@ -844,26 +844,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2084857285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4115388314361398354, guid: f26cce4f74d868044908bcff7485605a,
-    type: 3}
-  m_PrefabInstance: {fileID: 206472794}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &2084857290
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084857285}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 1.85
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.005, z: 0}
 --- !u!1 &2145781690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,12 +1020,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2993815949817887203, guid: 8e2a69081b04b584eb75eedf8185bdf2,
-        type: 3}
-      propertyPath: Projectile
-      value: 
-      objectReference: {fileID: 573945275736839793, guid: 896b9522b5babd44e85bab1b2006a3c7,
-        type: 3}
     - target: {fileID: 4115388314361202992, guid: 8e2a69081b04b584eb75eedf8185bdf2,
         type: 3}
       propertyPath: m_RootOrder
@@ -1106,11 +1080,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost
       objectReference: {fileID: 0}
-    - target: {fileID: 4115388314370801834, guid: 8e2a69081b04b584eb75eedf8185bdf2,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fd10e581bcaaf104f9a796e07b409b60, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2a69081b04b584eb75eedf8185bdf2, type: 3}
 --- !u!1001 &7466478448218286613
