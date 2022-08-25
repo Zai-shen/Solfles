@@ -43,18 +43,25 @@ public class Enemy : MonoBehaviour
     
     #endregion
 
+    #region Animation
+
+    protected Animator _animator;
+
+    #endregion
     
     // Start is called before the first frame update
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _navMeshPath = new NavMeshPath();
+        _animator = GetComponent<Animator>();
+        _attack = GetComponent<Attack>();
+        _attack.EAnimator = _animator;
     }
 
     private void Start()
     {
         _target = PlayerManager.Instance.Player.transform;
-        _attack = GetComponent<Attack>();
         _attack.Target = _target;
     }
 
@@ -119,6 +126,7 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         _agent.SetDestination(transform.position);
+        _animator.SetFloat("MovSpeed", 0f);
         FaceTarget();
         
         _attack.DoAttack();
@@ -127,9 +135,15 @@ public class Enemy : MonoBehaviour
     private void ChasePlayer()
     {
         if (_agent.CalculatePath(_target.position, _navMeshPath))
+        {
             _agent.SetDestination(_target.position);
+            _animator.SetFloat("MovSpeed", 1f);
+        }
         else
+        {
             _agent.SetDestination(transform.position);
+            _animator.SetFloat("MovSpeed", 0f);
+        }
     }
 
     private void Patrole()

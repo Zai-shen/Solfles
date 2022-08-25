@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-public class RangedAttack : Attack
+public class Cast : RangedAttack
 {
 
-    protected override void HandleAttack()
+    protected override void MainAttack()
     {
+        base.MainAttack();
+        
         Debug.Log("RangedAttack base");
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.localScale = Vector3.one / 10f;
