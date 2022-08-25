@@ -5,11 +5,15 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public Transform Target;
-    
+
+    #region AttackStats
+
     public float AttackRange;
     public float TimeBetweenAttacks;
     private bool onCooldown;
     
+    #endregion
+
     public void DoAttack()
     {
         if (onCooldown) return;
@@ -20,13 +24,9 @@ public class Attack : MonoBehaviour
         Invoke(nameof(ResetAttack), TimeBetweenAttacks);
     }
 
-    private void HandleAttack()
+    protected virtual void HandleAttack()
     {
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.localScale = Vector3.one / 10f;
-        cube.transform.position = transform.position + new Vector3(0, 1f, 0.35f);
-        Rigidbody rb = cube.AddComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 25f, ForceMode.Impulse);
+        Debug.Log("Base Attack.");
     }
 
     private void ResetAttack()
