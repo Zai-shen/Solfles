@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
 
-    public LayerMask PlayerM, IgnoreSightCheck;
+    public LayerMask IgnoreSightCheck;
 
     #region Patroling
 
@@ -35,8 +35,7 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Navigation
-
-    private float _distanceToPlayer;
+    
     private Transform _target;
     private NavMeshAgent _agent;
     private NavMeshPath _navMeshPath;
@@ -65,16 +64,26 @@ public class Enemy : MonoBehaviour
         _attack.Target = _target;
     }
 
+    private void OnEnable()
+    {
+        Globals.Enemies.Add(this.gameObject);
+    }
+
+    private void OnDisable()
+    {
+        Globals.Enemies.Remove(this.gameObject);
+    }
+    
     // Update is called once per frame
     private void Update()
     {
-        _distanceToPlayer = _attack.DistanceToTarget();
         PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
         PlayerInAttackRange = _attack.CheckTargetInAttackRange();
 
         if (UseAggroRange)
         {
             if (UsePatroling && !PlayerInAttackRange) Patrole();
+            float _distanceToPlayer = _attack.DistanceToTarget();
             if (_distanceToPlayer <= AggroRange)
             {
                 if (((PlayerInSight && !PlayerInAttackRange) || (!PlayerInSight)) && !_attack.OnCooldown) ChasePlayer();
@@ -127,7 +136,7 @@ public class Enemy : MonoBehaviour
     {
         float _randomX = Random.Range(-WalkPointRange, WalkPointRange);
         float _randomZ = Random.Range(-WalkPointRange, WalkPointRange);
-        float _height = 2f;
+        const float _height = 2f;
         Vector3 _difference = new(_randomX, _height, _randomZ);
 
         WalkPoint = transform.position + _difference;

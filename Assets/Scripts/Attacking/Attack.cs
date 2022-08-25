@@ -27,11 +27,23 @@ public class Attack : MonoBehaviour
         Invoke(nameof(ResetAttack), Cooldown);
     }
 
-    protected virtual void MainAttack() { }
-    
-    protected virtual void EarlyAttack() { }
-    
-    protected virtual void LateAttack() { }
+    protected virtual void MainAttack()
+    {
+        if (!Target)
+            return;
+    }
+
+    protected virtual void EarlyAttack()
+    {
+        if (!Target)
+            return;
+    }
+
+    protected virtual void LateAttack()
+    {
+        if (!Target)
+            return;
+    }
 
     private void ResetAttack()
     {
