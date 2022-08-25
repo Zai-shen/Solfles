@@ -68,22 +68,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _distanceToPlayer = _attack.DistanceToTarget(_target);
-        PlayerInSight = !_attack.CheckTargetIsOccluded(_target, IgnoreSightCheck);
-        PlayerInAttackRange = _attack.CheckTargetInAttackRange(_target, PlayerM);
+        _distanceToPlayer = _attack.DistanceToTarget();
+        PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
+        PlayerInAttackRange = _attack.CheckTargetInAttackRange();
 
         if (UseAggroRange)
         {
             if (UsePatroling && !PlayerInAttackRange) Patrole();
             if (_distanceToPlayer <= AggroRange)
             {
-                if ((PlayerInSight && !PlayerInAttackRange) || (!PlayerInSight)) ChasePlayer();
+                if (((PlayerInSight && !PlayerInAttackRange) || (!PlayerInSight)) && !_attack.OnCooldown) ChasePlayer();
                 if (PlayerInSight && PlayerInAttackRange) Attack();
             }
         }
         else
         {
-            ChasePlayer();
+            if (!_attack.OnCooldown) ChasePlayer();
             if (PlayerInSight && PlayerInAttackRange) Attack();
         }
     }

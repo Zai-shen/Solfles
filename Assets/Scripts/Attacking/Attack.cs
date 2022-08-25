@@ -12,18 +12,18 @@ public class Attack : MonoBehaviour
 
     public float AttackRange = 1f;
     public float Cooldown = 1f;
-    private bool onCooldown;
+    public bool OnCooldown;
     
     #endregion
     
     public void DoAttack()
     {
-        if (onCooldown) return;
+        if (OnCooldown) return;
         EarlyAttack();
 
         Invoke(nameof(MainAttack), Cooldown / 2f);
 
-        onCooldown = true;
+        OnCooldown = true;
         Invoke(nameof(ResetAttack), Cooldown);
     }
 
@@ -35,26 +35,26 @@ public class Attack : MonoBehaviour
 
     private void ResetAttack()
     {
-        onCooldown = false;
+        OnCooldown = false;
         LateAttack();
     }
 
     private void Update()
     {
-        EAnimator.SetBool("IsAttacking",onCooldown);
+        EAnimator.SetBool("IsAttacking",OnCooldown);
     }
 
-    public float DistanceToTarget(Transform target)
+    public float DistanceToTarget()
     {
-        return Vector3.Distance(target.position, transform.position);
+        return Vector3.Distance(Target.position, transform.position);
     }
 
-    public bool CheckTargetInAttackRange(Transform target, LayerMask lm = default)
+    public bool CheckTargetInAttackRange()
     {
-        return DistanceToTarget(Target) <= AttackRange;
+        return DistanceToTarget() <= AttackRange;
     }
 
-    public bool CheckTargetIsOccluded(Transform target, LayerMask _ignoreLayers)
+    public bool CheckTargetIsOccluded(LayerMask _ignoreLayers)
     {
         bool occluded = true;
         RaycastHit _hit;
@@ -62,8 +62,8 @@ public class Attack : MonoBehaviour
         for (float i = 0; i <= 1.2f; i += 0.4f)
         {
             Vector3 heightDifference = new(0,i,0);
-            Vector3 _dirToTarget = (target.transform.position + heightDifference) - (transform.position + heightDifference);
-            if (Physics.Raycast(transform.position + heightDifference, _dirToTarget, out _hit, DistanceToTarget(Target), ~_ignoreLayers))
+            Vector3 _dirToTarget = (Target.transform.position + heightDifference) - (transform.position + heightDifference);
+            if (Physics.Raycast(transform.position + heightDifference, _dirToTarget, out _hit, DistanceToTarget(), ~_ignoreLayers))
             {
                 // Debug.DrawLine(transform.position, _dirToPlayer * _hit.distance, Color.black);
                 // Debug.Log($"Hit the following: {_hit.transform.name}");
