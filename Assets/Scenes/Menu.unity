@@ -2193,7 +2193,6 @@ GameObject:
   - component: {fileID: 1694645899}
   - component: {fileID: 1694645902}
   - component: {fileID: 1694645900}
-  - component: {fileID: 1694645903}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -2275,7 +2274,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1694645903}
+      - m_Target: {fileID: 1694645902}
         m_TargetAssemblyTypeName: soundmanager, Assembly-CSharp
         m_MethodName: ChangeVolume
         m_Mode: 1
@@ -2288,19 +2287,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1694645902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694645898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf60423e3455943448b8b2ded3df8e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 1694645900}
---- !u!114 &1694645903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
