@@ -33,17 +33,27 @@ public class Projectile : MonoBehaviour
             && !_didHit)
         {
             _didHit = true;
-            colliderGo.GetComponent<Health>()?.TryTakeDamage(ShotDamage);
-            if (HitEffect)
-            {
-                Instantiate(HitEffect, transform.position, Quaternion.identity);
-            }
-
+            
+            DealDamage(colliderGo);
+            CreateHitFX();
         }
         
         StartCoroutine(DelayedDestroy(LifeTimeAfterCollision));
     }
-    
+
+    private void CreateHitFX()
+    {
+        if (HitEffect)
+        {
+            Instantiate(HitEffect, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void DealDamage(GameObject colliderGo)
+    {
+        colliderGo.transform.root.GetComponent<Health>()?.TryTakeDamage(ShotDamage);
+    }
+
     private IEnumerator DelayedDestroy(float time)
     {
         yield return new WaitForSeconds(time);

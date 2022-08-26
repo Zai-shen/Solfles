@@ -35,8 +35,16 @@ public class Player : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         Health = GetComponent<Health>();
+        Health.OnDeath += Die;
         _attack = GetComponent<Attack>();
         _attack.EAnimator = GetComponent<Animator>();
+    }
+
+    private void Die()
+    {
+        _attack.EAnimator.enabled = false;
+        _playerMovement.enabled = false;
+        _attack.enabled = false;
     }
     
     private void Update()

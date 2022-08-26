@@ -61,10 +61,11 @@ public class Enemy : MonoBehaviour
         _navMeshPath = new NavMeshPath();
         _animator = GetComponent<Animator>();
         Health = GetComponent<Health>();
+        Health.OnDeath += Die;
         _attack = GetComponent<Attack>();
         _attack.EAnimator = _animator;
     }
-
+    
     private void Start()
     {
         _target = PlayerManager.Instance.Player.transform;
@@ -160,6 +161,11 @@ public class Enemy : MonoBehaviour
     private void FaceTarget()
     {
         transform.LookAt(new Vector3(_target.position.x, transform.position.y, _target.position.z));
+    }
+    
+    void Die()
+    {
+        Destroy(this.gameObject);
     }
     
     private void OnDrawGizmosSelected()

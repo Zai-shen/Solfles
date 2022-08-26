@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public Action OnDeath;
     public bool GodMode;
     public int HealthPoints = 100;
     private int _startingHP;
@@ -52,10 +53,6 @@ public class Health : MonoBehaviour
         if (GodMode)
             return;
         
-        //Play Death Anim
-        
-        //Destroy
-        Debug.Log($"{transform.name} just died!");
-        Destroy(this.gameObject);
+        OnDeath.Invoke();
     }
 }
