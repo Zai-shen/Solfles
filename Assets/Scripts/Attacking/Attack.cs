@@ -20,8 +20,8 @@ public class Attack : MonoBehaviour
     {
         if (OnCooldown) return;
         EarlyAttack();
-
         Invoke(nameof(MainAttack), Cooldown / 2f);
+        Invoke(nameof(LateAttack), Cooldown);
 
         OnCooldown = true;
         Invoke(nameof(ResetAttack), Cooldown);
@@ -30,25 +30,33 @@ public class Attack : MonoBehaviour
     protected virtual void MainAttack()
     {
         if (!Target)
+        {
+            Debug.Log("No Target!");
             return;
+        }
     }
 
     protected virtual void EarlyAttack()
     {
         if (!Target)
+        {
+            Debug.Log("No Target!");
             return;
+        }
     }
 
     protected virtual void LateAttack()
     {
         if (!Target)
+        {
+            Debug.Log("No Target!");
             return;
+        }
     }
 
     private void ResetAttack()
     {
         OnCooldown = false;
-        LateAttack();
     }
 
     private void Update()

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public LayerMask IgnoreSightCheck, EnemyM;
     private PlayerMovement _playerMovement;
+    
 
     #region Attack
 
