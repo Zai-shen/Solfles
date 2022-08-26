@@ -9,7 +9,6 @@ public class Shield : RangedAttack
     private Color _shieldMatColor;
     
     public float ShotForce = 10f;
-    public float ShotLifeTime = 5f;
 
     public Color ShieldFXFinalColor = new Color(0.9f, 0.1f, 0.1f, 1);
     public bool CRRunning;
@@ -30,16 +29,11 @@ public class Shield : RangedAttack
         base.LateAttack();
         
         GameObject shot = Instantiate(Projectile, transform.position + new Vector3(0f, 1.5f, -0.3f), Quaternion.identity);
-        Rigidbody rb = shot.GetComponent<Rigidbody>();
-        rb.AddForce((Target.position - transform.position).normalized * ShotForce, ForceMode.Impulse);
+        Projectile pShot = shot.GetComponent<Projectile>();
+        pShot.ShotForce = ShotForce;
+        pShot.ShotDamage = AttackDamage;
+        pShot.Shoot((Target.position - transform.position).normalized);
 
-        StartCoroutine(DelayedDestroy(ShotLifeTime, shot));
-    }
-
-    private IEnumerator DelayedDestroy(float time, GameObject goToDestroy)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(goToDestroy);
     }
 
     private IEnumerator ShieldFX(float duration)

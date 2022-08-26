@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(Attack))]
+[RequireComponent(typeof(Attack),typeof(Health))]
 public class Enemy : MonoBehaviour
 {
 
@@ -22,6 +22,12 @@ public class Enemy : MonoBehaviour
     
     #endregion
 
+    #region Health
+
+    public Health Health;
+
+    #endregion
+    
     #region Attacking
 
     private Attack _attack;
@@ -54,6 +60,7 @@ public class Enemy : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _navMeshPath = new NavMeshPath();
         _animator = GetComponent<Animator>();
+        Health = GetComponent<Health>();
         _attack = GetComponent<Attack>();
         _attack.EAnimator = _animator;
     }

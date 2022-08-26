@@ -2,11 +2,10 @@
 
 public class Punch : MeleeAttack
 {
-
-    protected override void EarlyAttack()
+    protected override void MainAttack()
     {
-        base.EarlyAttack();
-        // Debug.Log("Punch");
+        base.MainAttack();
+        Health _targetHealth = Target.GetComponent<Health>();
+        _targetHealth.TryTakeDamage(AttackDamage);
     }
-    
 }

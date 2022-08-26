@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement),typeof(Attack))]
+[RequireComponent(typeof(PlayerMovement),
+    typeof(Attack),
+    typeof(Health))]
 public class Player : MonoBehaviour
 {
     public LayerMask IgnoreSightCheck, EnemyM;
     private PlayerMovement _playerMovement;
-    
+
+    #region Health
+
+    public Health Health;
+
+    #endregion
 
     #region Attack
 
@@ -27,6 +34,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        Health = GetComponent<Health>();
         _attack = GetComponent<Attack>();
         _attack.EAnimator = GetComponent<Animator>();
     }

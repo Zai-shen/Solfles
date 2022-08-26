@@ -10,6 +10,7 @@ public class Attack : MonoBehaviour
 
     #region AttackStats
 
+    public int AttackDamage = 1;
     public float AttackRange = 1f;
     public float Cooldown = 1f;
     public bool OnCooldown;
@@ -19,6 +20,7 @@ public class Attack : MonoBehaviour
     public void DoAttack()
     {
         if (OnCooldown) return;
+
         EarlyAttack();
         Invoke(nameof(MainAttack), Cooldown / 2f);
         Invoke(nameof(LateAttack), Cooldown);
