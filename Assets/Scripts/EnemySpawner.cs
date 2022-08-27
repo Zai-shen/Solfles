@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -51,7 +52,12 @@ public class EnemySpawner : MonoBehaviour
             }
             // Debug.Log($"{_randomLocation} is out of camera :)");
 
-            if (Physics.Raycast(_randomLocation + new Vector3(0, 5, 0), Vector3.down, 10f, Globals.GroundMask))
+            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit hit, 3.0f, NavMesh.AllAreas))
+            {
+                _randomLocation = hit.position;
+            }
+            
+            if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
             {
                 // Debug.Log($"Found ground at: {_randomLocation}");
                 break;
