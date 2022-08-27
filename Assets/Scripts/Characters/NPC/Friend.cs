@@ -14,6 +14,7 @@ public class Friend : MonoBehaviour
     #region Health
 
     public Health Health;
+    public Healthbar HealthBar;
 
     #endregion
     
@@ -56,10 +57,27 @@ public class Friend : MonoBehaviour
         _agent.speed = MoveSpeed;
         _navMeshPath = new NavMeshPath();
         _animator = GetComponent<Animator>();
+        HealthBar.SetMaxHealth(Health.HealthPoints);
         Health = GetComponent<Health>();
-        Health.OnDeath += Die;
         _attack = GetComponent<Attack>();
         _attack.EAnimator = _animator;
+    }
+
+    private void OnEnable()
+    {
+        Health.OnDeath += Die;
+        Health.OnTakeDamage -= SetUIHealth;
+    }
+    
+    private void OnDisable()
+    {
+        Health.OnDeath += Die;
+        Health.OnTakeDamage -= SetUIHealth;
+    }
+
+    private void SetUIHealth(int currentHealth)
+    {
+        HealthBar.SetHealth(currentHealth);
     }
     
     private void Start()
