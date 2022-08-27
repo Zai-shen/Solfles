@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -19,6 +20,7 @@ public class Attack : MonoBehaviour
     
     public void DoAttack()
     {
+        if (enabled == false) return;
         if (OnCooldown) return;
 
         EarlyAttack();
@@ -99,5 +101,11 @@ public class Attack : MonoBehaviour
         }
 
         return occluded;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 }

@@ -41,7 +41,8 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Navigation
-    
+
+    public float MoveSpeed = 2f;
     private Transform _target;
     private NavMeshAgent _agent;
     private NavMeshPath _navMeshPath;
@@ -54,10 +55,10 @@ public class Enemy : MonoBehaviour
 
     #endregion
     
-    // Start is called before the first frame update
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+        _agent.speed = MoveSpeed;
         _navMeshPath = new NavMeshPath();
         _animator = GetComponent<Animator>();
         Health = GetComponent<Health>();
@@ -82,7 +83,6 @@ public class Enemy : MonoBehaviour
         Globals.Enemies.Remove(this.gameObject);
     }
     
-    // Update is called once per frame
     private void Update()
     {
         PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
@@ -170,12 +170,6 @@ public class Enemy : MonoBehaviour
     
     private void OnDrawGizmosSelected()
     {
-        if (_attack)
-        {
-            Gizmos.color = Color.red; 
-            Gizmos.DrawWireSphere(transform.position, _attack.AttackRange);
-        }
-        
         if (UseAggroRange)
         {
             Gizmos.color = Color.magenta;
