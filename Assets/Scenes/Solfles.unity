@@ -915,11 +915,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FriendWarChief
       objectReference: {fileID: 0}
-    - target: {fileID: 5623445128945577112, guid: 22877f2bf3b437c4f9b4252fe9d0311f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5623445128945851570, guid: 22877f2bf3b437c4f9b4252fe9d0311f,
         type: 3}
       propertyPath: m_RootOrder
@@ -1615,6 +1610,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008074008857411429, guid: 5fe632671247a4d40bbfc2dfe1bd04d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fe632671247a4d40bbfc2dfe1bd04d5, type: 3}
