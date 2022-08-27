@@ -59633,5 +59633,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 827677971784084958, guid: 67567455b4d6c6e479d0175a9f54cf42,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 964
+      objectReference: {fileID: 0}
+    - target: {fileID: 827677971784084958, guid: 67567455b4d6c6e479d0175a9f54cf42,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1029
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67567455b4d6c6e479d0175a9f54cf42, type: 3}
