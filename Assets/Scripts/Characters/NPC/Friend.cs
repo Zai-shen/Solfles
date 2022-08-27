@@ -29,6 +29,8 @@ public class Friend : MonoBehaviour
     
     #region Navigation
 
+    public int FindRange = 3;
+    private bool _found;
     private Player _player;
     private const float _maxDistanceToPlayer = 2f;
     private const float _standingDistanceToPlayer = 1.5f;
@@ -91,14 +93,26 @@ public class Friend : MonoBehaviour
         _searchCooldown += Time.deltaTime;
         if (_searchCooldown >= SearchCooldown)
         {
-            ChasePlayer();
-            daTarget = FindEnemyToAttack();
-            _searchCooldown -= SearchCooldown;
+            if (!_found)
+            {
+                if (DistanceToPlayer() <= FindRange)
+                {
+                    _found = true;
+                    _animator.SetTrigger("Jumping");
+                    _player.FriendFound.Invoke();
+                }
+            }
+            else
+            {
+                ChasePlayer();
+                daTarget = FindEnemyToAttack();
+                _searchCooldown -= SearchCooldown;
+            }
         }
         
         _animator.SetFloat("MovSpeed", _agent.velocity.magnitude); 
         
-        if (daTarget != null)
+        if (daTarget != null && _found)
         {
             _attack.Target = daTarget;
             _attack.DoAttack();
@@ -107,7 +121,7 @@ public class Friend : MonoBehaviour
     
     private void ChasePlayer()
     {
-        if (Vector3.Distance(transform.position, _player.transform.position) <= _maxDistanceToPlayer)
+        if (DistanceToPlayer() <= _maxDistanceToPlayer)
             return;
         
         bool posNeg1 = (Random.Range(0,2) == 1);
@@ -130,7 +144,12 @@ public class Friend : MonoBehaviour
 
         _agent.SetDestination(transform.position);
     }
-    
+
+    private float DistanceToPlayer()
+    {
+        return Vector3.Distance(transform.position, _player.transform.position);
+    }
+
     void Die()
     {
         Destroy(this.gameObject);

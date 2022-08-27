@@ -28,10 +28,12 @@ public class Player : MonoBehaviour
     #endregion
     
     #region States
-
+    
     public bool EnemyInSight, EnemyInAttackRange;
 
     #endregion
+
+    public Action FriendFound;
     
     private void Awake()
     {
@@ -46,12 +48,14 @@ public class Player : MonoBehaviour
     {
         Health.OnDeath += Die;
         Health.OnTakeDamage += SetUIHealth;
+        FriendFound += _playerMovement.Jump;
     }
 
     private void OnDisable()
     {
         Health.OnDeath -= Die;
         Health.OnTakeDamage -= SetUIHealth;
+        FriendFound -= _playerMovement.Jump;
     }
 
     private void SetUIHealth(int currentHealth)

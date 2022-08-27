@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Run();
-        Jump();
     }
 
     private void FixedUpdate()
@@ -76,12 +75,9 @@ public class PlayerMovement : MonoBehaviour
         _characterController.Move(_currentMovement * Time.deltaTime * MovementSpeed);
     }
 
-    private void Jump()
+    public void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _animator.SetTrigger("Jumping");
-        }
+        _animator.SetTrigger("Jumping");
     }
 
     private IEnumerator StandUp()
