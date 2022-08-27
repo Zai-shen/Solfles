@@ -14,9 +14,12 @@ public class EnemySpawner : MonoBehaviour
     private int _amountOfEnemies;
     private Transform _enemyContainer;
 
+    private Vector3 _mapBounds;
+
     private void Awake()
     {
         _camera = Camera.main;
+        _mapBounds = Globals.MapSize;
     }
 
     public void SetEnemyContainer(Transform go)
@@ -39,39 +42,45 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 _randomLocation = Vector3.zero;
 
-        while (true)
-        {
-            int tries = 200;
-            for (int i = 0; i < tries ; i++)
-            {
-                _randomLocation = RandomLocationInBounds();
-                if (!PointInCameraView(_randomLocation))
-                {
-                    break;
-                }
-            }
-            // Debug.Log($"{_randomLocation} is out of camera :)");
-
-            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit hit, 3.0f, NavMesh.AllAreas))
-            {
-                _randomLocation = hit.position;
-            }
-            
-            if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
-            {
-                // Debug.Log($"Found ground at: {_randomLocation}");
-                break;
-            }
-        }
+        bool found = false;
+        
+        // while (!found)
+        // {
+        //     int tries = 30;
+        //     for (int i = 0; i < tries ; i++)
+        //     {
+        //         _randomLocation = RandomLocationInBounds();
+        //         if (!PointInCameraView(_randomLocation))
+        //         {
+        //             break;
+        //         }
+        //     }
+        //     // Debug.Log($"{_randomLocation} is out of camera :)");
+        //
+        //     if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit hit, 3.0f, NavMesh.AllAreas))
+        //     {
+        //         _randomLocation = hit.position;
+        //     }
+        //     else
+        //     {
+        //         continue;
+        //     }
+        //     
+        //     if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
+        //     {
+        //         // Debug.Log($"Found ground at: {_randomLocation}");
+        //         break;
+        //     }
+        // }
 
         return _randomLocation;
     }
 
-    private static Vector3 RandomLocationInBounds()
+    private Vector3 RandomLocationInBounds()
     {
-        float _randomX = Random.Range(0f, Globals.MapSize.x / 2f);
+        float _randomX = Random.Range(0f, _mapBounds.x / 2f);
         float _randomY = Random.Range(0f, 0f);
-        float _randomZ = Random.Range(0f, Globals.MapSize.z / 2f);
+        float _randomZ = Random.Range(0f, _mapBounds.z / 2f);
         
         return new Vector3(_randomX, _randomY, _randomZ);
     }
@@ -97,5 +106,11 @@ public class EnemySpawner : MonoBehaviour
 
     private bool Is01(float a) {
         return a > 0 && a < 1;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(Vector3.zero, _mapBounds);
     }
 }
