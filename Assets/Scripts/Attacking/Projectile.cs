@@ -36,9 +36,12 @@ public class Projectile : MonoBehaviour
             
             DealDamage(colliderGo);
             CreateHitFX();
+            Destroy(this.gameObject);
         }
-        
-        StartCoroutine(DelayedDestroy(LifeTimeAfterCollision));
+        else
+        {
+            StartCoroutine(DelayedDestroy(LifeTimeAfterCollision));
+        }
     }
 
     private void CreateHitFX()

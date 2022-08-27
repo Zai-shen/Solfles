@@ -11,10 +11,16 @@ public class EnemySpawner : MonoBehaviour
 
     private Camera _camera;
     private int _amountOfEnemies;
+    private Transform _enemyContainer;
 
     private void Awake()
     {
         _camera = Camera.main;
+    }
+
+    public void SetEnemyContainer(Transform go)
+    {
+        _enemyContainer = go;
     }
 
     public void Spawn(Enemy enemy, Vector3 location = default)
@@ -23,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
             location = FindLocation();
         
         Enemy nEnemy = Instantiate(enemy, location, Quaternion.identity);
+        nEnemy.transform.SetParent(_enemyContainer.transform);
         
         _amountOfEnemies = Globals.Enemies.Count;
     }
@@ -30,15 +37,13 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 FindLocation()
     {
         Vector3 _randomLocation = Vector3.zero;
-        bool found = false;
 
-        while (!found)
+        while (true)
         {
             int tries = 200;
             for (int i = 0; i < tries ; i++)
             {
                 _randomLocation = RandomLocationInBounds();
-                // Debug.Log($"Try location: {_randomLocation}");
                 if (!PointInCameraView(_randomLocation))
                 {
                     break;
@@ -49,11 +54,7 @@ public class EnemySpawner : MonoBehaviour
             if (Physics.Raycast(_randomLocation + new Vector3(0, 5, 0), Vector3.down, 10f, Globals.GroundMask))
             {
                 Debug.Log($"Found ground at: {_randomLocation}");
-                found = true;
-            }
-            else
-            {
-                // Debug.Log($"Found NO ground at: {_randomLocation}");
+                break;
             }
         }
 
@@ -73,16 +74,13 @@ public class EnemySpawner : MonoBehaviour
         Vector3 viewport = _camera.WorldToViewportPoint(point);
         bool inCameraFrustum = Is01(viewport.x) && Is01(viewport.y);
         bool inFrontOfCamera = viewport.z > 0;
- 
-        RaycastHit depthCheck;
         bool objectBlockingPoint = false;
- 
-        Vector3 directionBetween = point - _camera.transform.position;
-        directionBetween = directionBetween.normalized;
+
+        Vector3 directionBetween = (point - _camera.transform.position).normalized;
  
         float distance = Vector3.Distance(_camera.transform.position, point);
- 
-        if(Physics.Raycast(_camera.transform.position, directionBetween, out depthCheck, distance + 0.05f)) {
+
+        if(Physics.Raycast(_camera.transform.position, directionBetween, out RaycastHit depthCheck, distance + 0.05f)) {
             if(depthCheck.point != point) {
                 objectBlockingPoint = true;
             }
@@ -90,8 +88,8 @@ public class EnemySpawner : MonoBehaviour
  
         return inCameraFrustum && inFrontOfCamera && !objectBlockingPoint;
     }
- 
-    public bool Is01(float a) {
+
+    private bool Is01(float a) {
         return a > 0 && a < 1;
     }
 }
