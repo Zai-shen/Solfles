@@ -509,6 +509,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FriendWarriorMale
       objectReference: {fileID: 0}
+    - target: {fileID: 1715286383066410257, guid: f270426754892a348bd16425b4ac5d58,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f270426754892a348bd16425b4ac5d58, type: 3}
 --- !u!1001 &462345683
@@ -701,6 +706,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FriendFemaleKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 1230769622661276427, guid: 8a6458c01f1da58419428b34faf1268f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1230769622661550881, guid: 8a6458c01f1da58419428b34faf1268f,
         type: 3}
       propertyPath: m_RootOrder
@@ -840,6 +850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockGolem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001207667634100444, guid: acac8ae9cb47164488093407c6a16152,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7001207667634425168, guid: acac8ae9cb47164488093407c6a16152,
         type: 3}
@@ -990,7 +1005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1354846755
 Transform:
   m_ObjectHideFlags: 0
@@ -1022,6 +1037,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FriendWarChief
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623445128945577112, guid: 22877f2bf3b437c4f9b4252fe9d0311f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5623445128945851570, guid: 22877f2bf3b437c4f9b4252fe9d0311f,
         type: 3}
@@ -1281,6 +1301,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FriendWarriorFemale
       objectReference: {fileID: 0}
+    - target: {fileID: 634680194863922214, guid: 69a482675fadeb040847edcee2a665b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a482675fadeb040847edcee2a665b4, type: 3}
 --- !u!4 &1607358650 stripped
@@ -1306,6 +1331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockGolem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001207667634100444, guid: acac8ae9cb47164488093407c6a16152,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7001207667634425168, guid: acac8ae9cb47164488093407c6a16152,
         type: 3}
@@ -1740,6 +1770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ghost
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115388314361398354, guid: 8e2a69081b04b584eb75eedf8185bdf2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2a69081b04b584eb75eedf8185bdf2, type: 3}

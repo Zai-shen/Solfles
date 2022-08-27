@@ -2,7 +2,8 @@
 
 public class MeleeAttack : Attack
 {
-
+    public GameObject HitEffect;
+    
     protected override void EarlyAttack()
     {
         base.EarlyAttack();

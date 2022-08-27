@@ -17,7 +17,12 @@ public class Attack : MonoBehaviour
     public bool OnCooldown;
     
     #endregion
-    
+
+    private void Start()
+    {
+        EAnimator.SetFloat("AttacksPerSecond", 1 / Cooldown);
+    }
+
     public void DoAttack()
     {
         if (!Target) return;
