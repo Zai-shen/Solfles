@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [HideInInspector]public int Difficulty;
     public Enemy Wolf;
     public Enemy RockGolem;
     public Enemy Ghost;
@@ -44,34 +43,34 @@ public class EnemySpawner : MonoBehaviour
 
         bool found = false;
         
-        // while (!found)
-        // {
-        //     int tries = 30;
-        //     for (int i = 0; i < tries ; i++)
-        //     {
-        //         _randomLocation = RandomLocationInBounds();
-        //         if (!PointInCameraView(_randomLocation))
-        //         {
-        //             break;
-        //         }
-        //     }
-        //     // Debug.Log($"{_randomLocation} is out of camera :)");
-        //
-        //     if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit hit, 3.0f, NavMesh.AllAreas))
-        //     {
-        //         _randomLocation = hit.position;
-        //     }
-        //     else
-        //     {
-        //         continue;
-        //     }
-        //     
-        //     if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
-        //     {
-        //         // Debug.Log($"Found ground at: {_randomLocation}");
-        //         break;
-        //     }
-        // }
+        while (!found)
+        {
+            int tries = 30;
+            for (int i = 0; i < tries ; i++)
+            {
+                _randomLocation = RandomLocationInBounds();
+                if (!PointInCameraView(_randomLocation))
+                {
+                    break;
+                }
+            }
+            // Debug.Log($"{_randomLocation} is out of camera :)");
+        
+            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit hit, 3.0f, NavMesh.AllAreas))
+            {
+                _randomLocation = hit.position;
+            }
+            else
+            {
+                continue;
+            }
+            
+            if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
+            {
+                // Debug.Log($"Found ground at: {_randomLocation}");
+                break;
+            }
+        }
 
         return _randomLocation;
     }
