@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     #region Attack
 
+    private List<GameObject> _enemiesInAttackRange = new();
     public float SearchCooldown = 0.5f;
     private float _searchCooldown;
     private Attack _attack;
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
     {
         if (Physics.CheckSphere(transform.position, _attack.AttackRange, EnemyM))
         {
-            Globals.EnemiesInAttackRange.Clear();
+            _enemiesInAttackRange.Clear();
             float _closestDistance = Mathf.Infinity;
             Transform _enemyToAttack = null;
             
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
                 EnemyInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
                 if (EnemyInAttackRange && EnemyInSight)
                 {
-                    Globals.EnemiesInAttackRange.Add(_enemy);
+                    _enemiesInAttackRange.Add(_enemy);
                     if (_attack.DistanceToTarget() < _closestDistance)
                     {
                         _enemyToAttack = _enemy.transform;
