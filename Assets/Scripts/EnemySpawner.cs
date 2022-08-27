@@ -49,11 +49,11 @@ public class EnemySpawner : MonoBehaviour
                     break;
                 }
             }
-            Debug.Log($"{_randomLocation} is out of camera :)");
+            // Debug.Log($"{_randomLocation} is out of camera :)");
 
             if (Physics.Raycast(_randomLocation + new Vector3(0, 5, 0), Vector3.down, 10f, Globals.GroundMask))
             {
-                Debug.Log($"Found ground at: {_randomLocation}");
+                // Debug.Log($"Found ground at: {_randomLocation}");
                 break;
             }
         }
