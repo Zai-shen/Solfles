@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
 
     #region Navigation
 
+    public float SearchCooldown = 0.1f;
+    private float _searchCooldown;
     public float MoveSpeed = 2f;
     private Transform _target;
     private NavMeshAgent _agent;
@@ -87,7 +89,7 @@ public class Enemy : MonoBehaviour
     {
         PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
         PlayerInAttackRange = _attack.CheckTargetInAttackRange();
-
+        
         if (UseAggroRange)
         {
             if (UsePatroling && !PlayerInAttackRange) Patrole();
@@ -100,7 +102,12 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (!_attack.OnCooldown) ChasePlayer();
+            _searchCooldown += Time.deltaTime;
+            if (_searchCooldown >= SearchCooldown)
+            {
+                if (!_attack.OnCooldown) ChasePlayer();
+                _searchCooldown -= SearchCooldown;
+            }
             if (PlayerInSight && PlayerInAttackRange) Attack();
         }
     }

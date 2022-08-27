@@ -57,8 +57,8 @@ public class Friend : MonoBehaviour
         _agent.speed = MoveSpeed;
         _navMeshPath = new NavMeshPath();
         _animator = GetComponent<Animator>();
-        HealthBar.SetMaxHealth(Health.HealthPoints);
         Health = GetComponent<Health>();
+        HealthBar?.SetMaxHealth(Health.HealthPoints);
         _attack = GetComponent<Attack>();
         _attack.EAnimator = _animator;
     }
@@ -77,7 +77,7 @@ public class Friend : MonoBehaviour
 
     private void SetUIHealth(int currentHealth)
     {
-        HealthBar.SetHealth(currentHealth);
+        HealthBar?.SetHealth(currentHealth);
     }
     
     private void Start()
