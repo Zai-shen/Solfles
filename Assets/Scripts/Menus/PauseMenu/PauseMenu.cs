@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pause;
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
+        pause.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void Continue ()
     {
-        pauseMenu.SetActive(false);
+        pause.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
+
 
     public void MainMenu ()
     {
