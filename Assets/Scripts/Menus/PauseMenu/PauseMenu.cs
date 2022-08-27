@@ -9,14 +9,14 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        pause.SetActive(true);
         Time.timeScale = 0f;
+        pause.SetActive(true);
     }
 
     public void Continue ()
     {
-        pause.SetActive(false);
         Time.timeScale = 1f;
+        pause.SetActive(false);
     }
 
     public void Restart()
