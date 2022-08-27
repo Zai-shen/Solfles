@@ -29,6 +29,8 @@ public class Friend : MonoBehaviour
     #region Navigation
 
     private Player _player;
+    private const float _maxDistanceToPlayer = 2f;
+    private const float _standingDistanceToPlayer = 1.5f;
     public float MoveSpeed = 5f;
     private Transform _target;
     private NavMeshAgent _agent;
@@ -67,15 +69,16 @@ public class Friend : MonoBehaviour
 
     private void Update()
     {
-        ChasePlayer();
-        
         Transform daTarget = null;
         _searchCooldown += Time.deltaTime;
         if (_searchCooldown >= SearchCooldown)
         {
+            ChasePlayer();
             daTarget = FindEnemyToAttack();
             _searchCooldown -= SearchCooldown;
         }
+        
+        _animator.SetFloat("MovSpeed", _agent.velocity.magnitude); 
         
         if (daTarget != null)
         {
@@ -86,16 +89,28 @@ public class Friend : MonoBehaviour
     
     private void ChasePlayer()
     {
-        if (_agent.CalculatePath(_player.transform.position, _navMeshPath))
+        if (Vector3.Distance(transform.position, _player.transform.position) <= _maxDistanceToPlayer)
+            return;
+        
+        bool posNeg1 = (Random.Range(0,2) == 1);
+        bool posNeg2 = (Random.Range(0,2) == 1);
+        Vector3 _randomisation = new(
+            (posNeg1?1f:-1f) * Random.Range(0.5f, _standingDistanceToPlayer),
+            0,
+            (posNeg2?1f:-1f) * Random.Range(0.5f, _standingDistanceToPlayer));
+        Vector3 _nearPlayer = _player.transform.position + _randomisation;
+        const int tries = 30;
+ 
+        for (int i = 0; i < tries; i++)
         {
-            _agent.SetDestination(_player.transform.position);
-            _animator.SetFloat("MovSpeed", 1f);
+            if (_agent.CalculatePath(_nearPlayer, _navMeshPath))
+            {
+                _agent.SetDestination(_nearPlayer);
+                return;
+            }
         }
-        else
-        {
-            _agent.SetDestination(transform.position);
-            _animator.SetFloat("MovSpeed", 0f);
-        }
+
+        _agent.SetDestination(transform.position);
     }
     
     void Die()

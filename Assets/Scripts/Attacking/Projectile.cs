@@ -8,8 +8,8 @@ public class Projectile : MonoBehaviour
 {
     public ParticleSystem HitEffect;
     
-    public float ShotForce;
-    public int ShotDamage;
+    [HideInInspector]public float ShotForce;
+    [HideInInspector]public int ShotDamage;
     public float LifeTimeAfterCollision = 1f;
     private Rigidbody _rb;
     private bool _didHit;

@@ -20,6 +20,7 @@ public class Attack : MonoBehaviour
     
     public void DoAttack()
     {
+        if (!Target) return;
         if (enabled == false) return;
         if (OnCooldown) return;
 
