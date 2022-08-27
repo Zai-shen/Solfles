@@ -55,17 +55,20 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(StandUp());
         }
 
-        if (!_HasMoved)
-        {
-            _animator.SetBool("IsSleeping", true);
-        }
-        
         if (_currentMovement != Vector3.zero)
         {
             transform.forward = _currentMovement;
         }
 
-        _animator.SetFloat("MovSpeed", _currentMovement.magnitude);
+        if (!_HasMoved)
+        {
+            _animator.SetBool("IsSleeping", true);
+        }
+        else
+        {
+            _animator.SetFloat("MovSpeed", _currentMovement.magnitude);
+        }
+        
     }
 
     private void DoRun()
@@ -83,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator StandUp()
     {
-        _animator.SetBool("IsSleeping", false);
         _animator.SetTrigger("StandingUp");
         yield return new WaitForSeconds(3f);
+        _animator.SetBool("IsSleeping", false);
         _HasMoved = true;
     }
 }
