@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     #region Health
 
     public Health Health;
+    public Healthbar HealthBar;
 
     #endregion
 
@@ -36,9 +37,26 @@ public class Player : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         Health = GetComponent<Health>();
-        Health.OnDeath += Die;
+        HealthBar.SetMaxHealth(Health.HealthPoints);
         _attack = GetComponent<Attack>();
         _attack.EAnimator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        Health.OnDeath += Die;
+        Health.OnTakeDamage += SetUIHealth;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnDeath -= Die;
+        Health.OnTakeDamage -= SetUIHealth;
+    }
+
+    private void SetUIHealth(int currentHealth)
+    {
+        HealthBar.SetHealth(currentHealth);
     }
 
     private void Die()
@@ -46,6 +64,7 @@ public class Player : MonoBehaviour
         _attack.EAnimator.enabled = false;
         _playerMovement.enabled = false;
         _attack.enabled = false;
+        Health.enabled = false;
     }
     
     private void Update()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public Action OnDeath;
+    public Action<int> OnTakeDamage;
     public bool GodMode;
     public int HealthPoints = 100;
     private int _startingHP;
@@ -25,6 +26,7 @@ public class Health : MonoBehaviour
 
     public void TryTakeDamage(int dmg)
     {
+        if (!enabled) return;
         if (_tookDamageRecently) return;
         
         TakeDamage(dmg);
@@ -42,6 +44,8 @@ public class Health : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         HealthPoints -= dmg;
+        OnTakeDamage?.Invoke(HealthPoints);
+        
         if (HealthPoints <= 0)
         {
             Die();
@@ -53,6 +57,6 @@ public class Health : MonoBehaviour
         if (GodMode)
             return;
         
-        OnDeath.Invoke();
+        OnDeath?.Invoke();
     }
 }
