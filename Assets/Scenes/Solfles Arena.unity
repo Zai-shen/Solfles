@@ -16249,6 +16249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7729577987860890362, guid: f26cce4f74d868044908bcff7485605a,
         type: 3}
+      propertyPath: StepCooldown
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729577987860890362, guid: f26cce4f74d868044908bcff7485605a,
+        type: 3}
       propertyPath: AudioClips.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -74886,8 +74891,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8381072454715906452, guid: 01d54e2899a1bbd468a601ff8c44cace,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

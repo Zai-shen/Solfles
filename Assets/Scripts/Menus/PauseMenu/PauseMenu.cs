@@ -7,20 +7,28 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pause;
 
+    private void PlayClickSound()
+    {
+        AudioManager.Instance?.PlayOnce(AudioManager.Instance.AudioClips[2]);
+    }
+
     public void Pause()
     {
+        PlayClickSound();
         Time.timeScale = 0f;
         pause.SetActive(true);
     }
 
     public void Continue ()
     {
+        PlayClickSound();
         Time.timeScale = 1f;
         pause.SetActive(false);
     }
 
     public void Restart()
     {
+        PlayClickSound();
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
@@ -28,6 +36,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu ()
     {
+        PlayClickSound();
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }

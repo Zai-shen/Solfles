@@ -2,11 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public AudioClip[] AudioClips;
     public float MovementSpeed;
+    private AudioSource _audioSource;
+    private float _stepCooldown;
+    public float StepCooldown = 0.25f;
+    
+    
     [SerializeField] private Vector3 _currentMovement;
  
     private Animator _animator;   
@@ -16,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly Matrix4x4 isoFix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
     }
@@ -44,6 +50,17 @@ public class PlayerMovement : MonoBehaviour
         _currentMovement = new Vector3(horizontalInput, 0, verticalInput);
         _currentMovement = isoFix.MultiplyPoint3x4(_currentMovement);
         _currentMovement.Normalize();
+
+            _stepCooldown += Time.deltaTime;
+        if (_HasMoved && (_currentMovement.magnitude >= 0.01f))
+        {
+            if (_stepCooldown >= StepCooldown)
+            {
+                _audioSource.pitch = Random.Range(0.7f, 1.3f);
+                _audioSource.Play();
+                _stepCooldown -= StepCooldown;
+            }
+        }
         
         Animate();
     }
