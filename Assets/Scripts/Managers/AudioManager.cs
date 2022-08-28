@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     public AudioSource AudioSource;
     public AudioClip[] AudioClips;
+
+    public bool IsPlayingMusic;
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,12 +21,11 @@ public class AudioManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
-        
-        PlayContinuous(AudioClips[0]);
     }
 
     public void PlayContinuous(AudioClip audioClip)
     {
+        IsPlayingMusic = true;
         AudioSource.clip = audioClip;
         AudioSource.Play();
     }
