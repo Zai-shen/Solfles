@@ -7,6 +7,7 @@ public class Cast : RangedAttack
     protected override void MainAttack()
     {
         base.MainAttack();
+        if (!Target) return;
 
         Vector3 midPlayerBody = new Vector3(0,1.85f / 2f,0);
         Vector3 projSpawn = transform.position + new Vector3(-0.3f, 1.3f, 0.3f);

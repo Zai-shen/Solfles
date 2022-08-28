@@ -27,6 +27,7 @@ public class Shield : RangedAttack
     protected override void LateAttack()
     {
         base.LateAttack();
+        if (!Target) return;
         Vector3 projSpawn = transform.position + new Vector3(0f, 1.5f, -0.3f);
         GameObject shot = Instantiate(Projectile, projSpawn, Quaternion.identity);
         Projectile pShot = shot.GetComponent<Projectile>();

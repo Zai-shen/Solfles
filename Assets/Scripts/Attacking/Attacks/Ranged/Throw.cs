@@ -7,6 +7,7 @@ public class Throw : RangedAttack
     protected override void MainAttack()
     {
         base.MainAttack();
+        if (!Target) return;
 
         Vector3 projSpawn = transform.position + new Vector3(0, 1.5f, 0f);
         GameObject shot = Instantiate(Projectile, projSpawn, Quaternion.identity);

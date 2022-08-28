@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float WinRadius = 5f;
     private int _activeScene = 0;
     private bool _audioStarted;
+    private bool _didWin;
     
     private void Awake()
     {
@@ -27,8 +28,8 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
-
-        if (Globals.Friends.Count == 4 && Vector3.Distance(_player.position, Vector3.zero) <= WinRadius)
+        
+        if (!_didWin && Globals.Friends.Count == 4 && Vector3.Distance(_player.position, Vector3.zero) <= WinRadius)
         {
             foreach (GameObject _friend in Globals.Friends)
             {
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        _didWin = true;
         WinScreen.Pause();
     }
 }
