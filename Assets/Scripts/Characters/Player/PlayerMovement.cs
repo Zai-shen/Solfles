@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(StandUp());
         }
 
-        if (_currentMovement != Vector3.zero)
+        if (_HasMoved && _currentMovement != Vector3.zero)
         {
             transform.forward = _currentMovement;
         }
