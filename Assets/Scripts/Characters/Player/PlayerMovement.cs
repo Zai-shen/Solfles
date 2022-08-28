@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioClip[] AudioClips;
     public float MovementSpeed;
     [SerializeField] private Vector3 _currentMovement;
  
