@@ -54,9 +54,8 @@ public class EnemySpawner : MonoBehaviour
                     break;
                 }
             }
-            // Debug.Log($"{_randomLocation} is out of camera :)");
         
-            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit _hit, 3.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit _hit, 2.0f, NavMesh.AllAreas))
             {
                 _randomLocation = _hit.position;
             }
@@ -67,7 +66,6 @@ public class EnemySpawner : MonoBehaviour
             
             if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
             {
-                // Debug.Log($"Found ground at: {_randomLocation}");
                 _found = true;
             }
         }
