@@ -41,12 +41,12 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 _randomLocation = Vector3.zero;
 
-        bool found = false;
+        bool _found = false;
         
-        while (!found)
+        while (!_found)
         {
-            int tries = 30;
-            for (int i = 0; i < tries ; i++)
+            int _tries = 30;
+            for (int _i = 0; _i < _tries ; _i++)
             {
                 _randomLocation = RandomLocationInBounds();
                 if (!PointInCameraView(_randomLocation))
@@ -56,9 +56,9 @@ public class EnemySpawner : MonoBehaviour
             }
             // Debug.Log($"{_randomLocation} is out of camera :)");
         
-            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit hit, 3.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(_randomLocation, out NavMeshHit _hit, 3.0f, NavMesh.AllAreas))
             {
-                _randomLocation = hit.position;
+                _randomLocation = _hit.position;
             }
             else
             {
@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
             if (Physics.Raycast(_randomLocation + new Vector3(0, 4, 0), Vector3.down, 6f, Globals.GroundMask))
             {
                 // Debug.Log($"Found ground at: {_randomLocation}");
-                break;
+                _found = true;
             }
         }
 

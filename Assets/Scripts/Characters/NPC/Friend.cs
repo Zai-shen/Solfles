@@ -98,6 +98,7 @@ public class Friend : MonoBehaviour
                 if (DistanceToPlayer() <= FindRange)
                 {
                     _found = true;
+                    Globals.Friends.Add(this.gameObject);
                     _animator.SetTrigger("Jumping");
                     _player.FriendFound.Invoke();
                 }
@@ -150,8 +151,9 @@ public class Friend : MonoBehaviour
         return Vector3.Distance(transform.position, _player.transform.position);
     }
 
-    void Die()
+    private void Die()
     {
+        _player.Health.TakeDamage(999);
         Destroy(this.gameObject);
     }
     

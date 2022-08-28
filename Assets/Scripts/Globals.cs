@@ -4,6 +4,7 @@ using UnityEngine;
 public static class Globals
 {
     public static List<GameObject> Enemies = new List<GameObject>();
+    public static List<GameObject> Friends = new List<GameObject>();
 
     public static Vector3 MapSize = new Vector3(47f, 2.5f, 67f);
     

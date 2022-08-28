@@ -17,6 +17,7 @@ public class CombatDirector : MonoBehaviour
     private IEnumerator _startSpawning;
 
     private List<Enemy> _mobList;
+    [SerializeField]private int _wave = 0;
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class CombatDirector : MonoBehaviour
     }
     private IEnumerator SpawnContinuous()
     {
+        _wave++;
         GenerateMobs();
         yield return new WaitForSeconds(SpawnInterval);
         StartCoroutine(SpawnContinuous());
@@ -65,6 +67,9 @@ public class CombatDirector : MonoBehaviour
             case 3:
                 _enemySpawner.Spawn(_mobList[Random.Range(0,3)]);
                 SpawnInterval = 3;
+                break;
+            default:
+                _enemySpawner.Spawn(_mobList[Random.Range(0,3)]);
                 break;
         }
     }
