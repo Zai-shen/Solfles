@@ -30,6 +30,12 @@ public class AudioManager : MonoBehaviour
         AudioSource.Play();
     }
 
+    public void StopPlaying()
+    {
+        AudioSource.Stop();
+        IsPlayingMusic = false;
+    }
+
     public void PlayOnce(AudioClip audioClip)
     {
         AudioSource.PlayOneShot(audioClip);
