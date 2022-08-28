@@ -54,7 +54,30 @@ public class Projectile : MonoBehaviour
 
     private void DealDamage(GameObject colliderGo)
     {
-        colliderGo.transform.root.Find(colliderGo.name)?.GetComponent<Health>()?.TryTakeDamage(ShotDamage);
+        Health hp = colliderGo.GetComponent<Health>();
+        if (hp)
+        {
+            hp.TryTakeDamage(ShotDamage);
+        }
+        else
+        {
+            hp = GetComponentInParents(colliderGo.transform);
+            hp.TryTakeDamage(ShotDamage);
+        }
+    }
+
+    private Health GetComponentInParents(Transform current)
+    {
+        Health hp = null;
+        while (!hp)
+        {
+            hp = current.GetComponentInParent<Health>(true);
+            if (!hp)
+            {
+                current = current.parent;
+            }
+        }
+        return hp;
     }
 
     private IEnumerator DelayedDestroy(float time)

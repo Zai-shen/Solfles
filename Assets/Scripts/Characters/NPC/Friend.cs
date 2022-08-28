@@ -68,7 +68,7 @@ public class Friend : MonoBehaviour
     private void OnEnable()
     {
         Health.OnDeath += Die;
-        Health.OnTakeDamage -= SetUIHealth;
+        Health.OnTakeDamage += SetUIHealth;
     }
     
     private void OnDisable()
