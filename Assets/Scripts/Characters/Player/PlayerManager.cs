@@ -27,4 +27,10 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     public Player Player;
+    public PauseMenu DeathScreen;
+
+    private void Start()
+    {
+        Player.Health.OnDeath += DeathScreen.Pause;
+    }
 }
