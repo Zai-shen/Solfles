@@ -3,13 +3,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private PauseMenu _pauseMenu;
+    public PauseMenu PauseMenu;
+    public PauseMenu WinScreen;
     private bool _gamePaused;
-
-    private void Awake()
-    {
-        _pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
-    }
 
     private void Update()
     {
@@ -24,12 +20,17 @@ public class GameManager : MonoBehaviour
         if (!_gamePaused)
         {
             _gamePaused = true;
-            _pauseMenu?.Pause();
+            PauseMenu?.Pause();
         }
         else
         {
             _gamePaused = false;
-            _pauseMenu?.Continue();
+            PauseMenu?.Continue();
         }
+    }
+
+    public void WinGame()
+    {
+        WinScreen.Pause();
     }
 }
