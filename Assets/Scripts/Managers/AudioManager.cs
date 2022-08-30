@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
     public AudioSource AudioSource;
     public AudioClip[] AudioClips;
+
+    public static AudioManager Instance { get; private set; }
 
     public bool IsPlayingMusic;
     

@@ -25,11 +25,25 @@ public class PlayerManager : MonoBehaviour
 
             return _playerManager;
         }
+        set
+        {
+            
+        }
     }
 
     #endregion
-    
-    private void OnEnable()
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void Start()
     {
         if (DeathScreen)
         {

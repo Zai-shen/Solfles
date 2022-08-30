@@ -17,7 +17,6 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
     
     public void Shoot(Vector3 direction)
