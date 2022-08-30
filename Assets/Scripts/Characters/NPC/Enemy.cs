@@ -87,11 +87,11 @@ public class Enemy : MonoBehaviour
     
     private void Update()
     {
-        PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
         PlayerInAttackRange = _attack.CheckTargetInAttackRange();
-        
+
         if (UseAggroRange)
         {
+            PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
             if (UsePatroling && !PlayerInAttackRange) Patrole();
             float _distanceToPlayer = _attack.DistanceToTarget();
             if (_distanceToPlayer <= AggroRange)
@@ -102,11 +102,18 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            FaceTarget();
+
             _searchCooldown += Time.deltaTime;
             if (_searchCooldown >= SearchCooldown)
             {
                 if (!_attack.OnCooldown) ChasePlayer();
                 _searchCooldown -= SearchCooldown;
+            }
+
+            if (PlayerInAttackRange)
+            {
+                PlayerInSight = !_attack.CheckTargetIsOccluded(IgnoreSightCheck);
             }
             if (PlayerInSight && PlayerInAttackRange) Attack();
         }

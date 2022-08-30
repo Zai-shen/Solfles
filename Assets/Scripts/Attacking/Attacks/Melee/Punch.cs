@@ -7,8 +7,10 @@ public class Punch : MeleeAttack
         base.MainAttack();
         if (!Target) return;
 
-        Vector3 _closingDistance = new Vector3(0, 1.25f, 0.5f);
-        Instantiate(HitEffect, transform.position + _closingDistance, Quaternion.identity);
+        Vector3 _spawnDistance = new Vector3(0, 1f, 1f);
+        Vector3 _spawnDirection = (Target.position - transform.position).normalized;
+        Vector3 _spawnLocation = (transform.position + new Vector3(0, _spawnDistance.y, 0)) + (_spawnDirection * _spawnDistance.z);
+        Instantiate(HitEffect, _spawnLocation, Quaternion.identity);
         Health _targetHealth = Target.GetComponent<Health>();
         _targetHealth.TryTakeDamage(AttackDamage);
     }

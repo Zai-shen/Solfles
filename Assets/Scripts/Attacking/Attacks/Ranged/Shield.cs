@@ -28,12 +28,16 @@ public class Shield : RangedAttack
     {
         base.LateAttack();
         if (!Target) return;
-        Vector3 projSpawn = transform.position + new Vector3(0f, 1.5f, -0.3f);
-        GameObject shot = Instantiate(Projectile, projSpawn, Quaternion.identity);
+        
+        Vector3 _spawnDistance = new Vector3(0, 1.25f, 0.4f);
+        Vector3 _spawnDirection = (new Vector3(0,0, _spawnDistance.z) - transform.position).normalized;
+        Vector3 _spawnLocation = (transform.position + new Vector3(0, _spawnDistance.y, 0)) + (_spawnDirection * _spawnDistance.z);
+        
+        GameObject shot = Instantiate(Projectile, _spawnLocation, Quaternion.identity);
         Projectile pShot = shot.GetComponent<Projectile>();
         pShot.ShotForce = ShotForce;
         pShot.ShotDamage = AttackDamage;
-        pShot.Shoot((Target.position - projSpawn).normalized);
+        pShot.Shoot((Target.position - _spawnLocation).normalized);
     }
 
     private IEnumerator ShieldFX(float duration)

@@ -47,11 +47,11 @@ public class CombatDirector : MonoBehaviour
                 _currentMobList.Add(_mobList[0]);
                 break;
             case 2:
-                // _currentMobList.Add(_mobList[1]);
+                _currentMobList.Add(_mobList[1]);
                 SpawnInterval = 5f;
                 break;
             case 3:
-                // _currentMobList.Add(_mobList[2]);
+                _currentMobList.Add(_mobList[2]);
                 SpawnInterval = 4f;
                 break;
             default:
@@ -81,6 +81,6 @@ public class CombatDirector : MonoBehaviour
 
     private void GenerateMobs()
     {
-        _enemySpawner.Spawn(_currentMobList[Random.Range(0,_currentMobList.Count - 1)]);
+        _enemySpawner.Spawn(_currentMobList[Random.Range(0,_currentMobList.Count)]);
     }
 }
