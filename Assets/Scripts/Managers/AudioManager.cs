@@ -40,4 +40,9 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource.PlayOneShot(audioClip);
     }
+
+    public void PlayUIClick()
+    {
+        AudioSource.PlayOneShot(AudioClips[2]);
+    }
 }
