@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject MainlyMenu;
+    public GameObject OptionsMenu;
+    public GameObject CreditsMenu;
+    
     private void Start()
     {
-        AudioManager.Instance?.PlayContinuous(AudioManager.Instance.AudioClips[0]);
+        AudioManager.Instance?.PlayContinuous(AudioManager.Instance.MusicClips[0]);
     }
 
     private void PlayClickSound()
     {
-        AudioManager.Instance?.PlayOnce(AudioManager.Instance.AudioClips[2]);
+        AudioManager.Instance?.PlayUIClick();
     }
     
     public void PlayGame()
@@ -20,12 +24,36 @@ public class MainMenu : MonoBehaviour
         if (AudioManager.Instance.IsPlayingMusic)
         {
             AudioManager.Instance.StopPlaying();
-            AudioManager.Instance.PlayContinuous(AudioManager.Instance.AudioClips[1]);
+            AudioManager.Instance.PlayContinuous(AudioManager.Instance.MusicClips[1]);
             PlayClickSound();
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void DisplayOptionsMenu()
+    {
+        PlayClickSound();
+        MainlyMenu.SetActive(false);
+        OptionsMenu.SetActive(true);
+        CreditsMenu.SetActive(false);
+    }
+    
+    public void DisplayMainlyMenu()
+    {
+        PlayClickSound();
+        MainlyMenu.SetActive(true);
+        OptionsMenu.SetActive(false);
+        CreditsMenu.SetActive(false);
+    }
+    
+    public void DisplayCreditsMenu()
+    {
+        PlayClickSound();
+        MainlyMenu.SetActive(false);
+        OptionsMenu.SetActive(false);
+        CreditsMenu.SetActive(true);
+    }
+    
     public void QuitGame ()
     { 
         PlayClickSound();

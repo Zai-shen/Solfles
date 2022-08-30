@@ -12,6 +12,43 @@ public class GameManager : MonoBehaviour
     private int _activeScene = 0;
     private bool _audioStarted;
     private bool _didWin;
+
+    public Action ResetPause;
+
+    #region Singleton
+    
+    private static GameManager _gameManager;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (!_gameManager)
+            {
+                _gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
+
+                if (!_gameManager)
+                    Debug.LogError("There needs to be one active GameManager script on a GameObject in your scene.");
+            }
+
+            return _gameManager;
+        }
+        private set
+        {
+            
+        }
+    }
+
+    #endregion
+    
+    private void OnEnable()
+    {
+        ResetPause += ResetPauseState;
+    }
+
+    private void OnDisable()
+    {
+        ResetPause -= ResetPauseState;
+    }
     
     private void Awake()
     {
@@ -41,6 +78,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ResetPauseState()
+    {
+        _gamePaused = false;
+    }
+    
     private void PauseGame()
     {
         if (!_gamePaused)

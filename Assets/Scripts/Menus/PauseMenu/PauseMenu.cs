@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     private void PlayClickSound()
     {
-        AudioManager.Instance?.PlayOnce(AudioManager.Instance.AudioClips[2]);
+        AudioManager.Instance.PlayUIClick();
     }
 
     public void Pause()
@@ -21,6 +21,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Continue ()
     {
+        GameManager.Instance?.ResetPause.Invoke();
+        
         PlayClickSound();
         Time.timeScale = 1f;
         pause.SetActive(false);
