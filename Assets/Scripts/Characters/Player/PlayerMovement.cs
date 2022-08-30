@@ -51,9 +51,9 @@ public class PlayerMovement : MonoBehaviour
         _currentMovement = isoFix.MultiplyPoint3x4(_currentMovement);
         _currentMovement.Normalize();
 
-            _stepCooldown += Time.deltaTime;
         if (_HasMoved && (_currentMovement.magnitude >= 0.01f))
         {
+            _stepCooldown += Time.deltaTime;
             if (_stepCooldown >= StepCooldown)
             {
                 _audioSource.pitch = Random.Range(0.7f, 1.3f);
