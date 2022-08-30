@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
+    public AudioMixer GlobalMixer;
     public AudioSource MusicSource;
     public AudioSource EffectSource;
     public AudioClip[] MusicClips;
