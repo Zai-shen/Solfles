@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public Player Player;
+    public PauseMenu DeathScreen;
+
     #region Singleton
     
     private static PlayerManager _playerManager;
@@ -25,12 +28,20 @@ public class PlayerManager : MonoBehaviour
     }
 
     #endregion
-
-    public Player Player;
-    public PauseMenu DeathScreen;
-
-    private void Start()
+    
+    private void OnEnable()
     {
-        Player.Health.OnDeath += DeathScreen.Pause;
+        if (DeathScreen)
+        {
+            Player.Health.OnDeath += DeathScreen.Pause;
+        }
+    }
+    
+    private void OnDisable()
+    {
+        if (DeathScreen)
+        {
+            Player.Health.OnDeath -= DeathScreen.Pause;
+        }
     }
 }
