@@ -60,4 +60,8 @@ public class GameManager : MonoBehaviour
         _didWin = true;
         WinScreen.Pause();
     }
+    
+    private void OnDrawGizmosSelected(){
+        Gizmos.DrawWireSphere(transform.position, WinRadius);
+    }
 }

@@ -15364,6 +15364,11 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1110659717}
+    - target: {fileID: 4107752581440591500, guid: f26cce4f74d868044908bcff7485605a,
+        type: 3}
+      propertyPath: GodMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4115388314361202992, guid: f26cce4f74d868044908bcff7485605a,
         type: 3}
       propertyPath: m_RootOrder
@@ -30131,6 +30136,11 @@ PrefabInstance:
       objectReference: {fileID: 1422264690}
     - target: {fileID: 7937504560451197574, guid: f32a5e8c40436264cba44fad176ea992,
         type: 3}
+      propertyPath: WinRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937504560451197574, guid: f32a5e8c40436264cba44fad176ea992,
+        type: 3}
       propertyPath: WinScreen
       value: 
       objectReference: {fileID: 7860721610172880605}
@@ -35185,7 +35195,7 @@ PrefabInstance:
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.14122863
+      value: -0.14122865
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
@@ -48991,7 +49001,7 @@ PrefabInstance:
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.14122863
+      value: -0.14122865
       objectReference: {fileID: 0}
     - target: {fileID: 5761948039315624173, guid: 087ef750ff7398b45885966603f7adf2,
         type: 3}
