@@ -5646,12 +5646,12 @@ PrefabInstance:
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677971472552909, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -5762,6 +5762,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FriendWarriorMaleHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 827677971472552913, guid: 67567455b4d6c6e479d0175a9f54cf42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 827677971784084958, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -10369,12 +10374,12 @@ PrefabInstance:
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677971472552909, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -10485,6 +10490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FriendWarChiefHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 827677971472552913, guid: 67567455b4d6c6e479d0175a9f54cf42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 827677971784084958, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -22836,12 +22846,12 @@ PrefabInstance:
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677971472552909, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -22952,6 +22962,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FriendFemaleKnightHealthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 827677971472552913, guid: 67567455b4d6c6e479d0175a9f54cf42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 827677971784084958, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -59810,12 +59825,12 @@ PrefabInstance:
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677970895496837, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827677971472552909, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
@@ -59926,6 +59941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FriendWarriorFemaleHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 827677971472552913, guid: 67567455b4d6c6e479d0175a9f54cf42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 827677971784084958, guid: 67567455b4d6c6e479d0175a9f54cf42,
         type: 3}
