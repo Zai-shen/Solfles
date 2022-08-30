@@ -97,6 +97,7 @@ public class Friend : MonoBehaviour
             {
                 if (DistanceToPlayer() <= FindRange)
                 {
+                    HealthBar.transform.parent.gameObject.SetActive(true);
                     _found = true;
                     Globals.Friends.Add(this.gameObject);
                     _animator.SetTrigger("Jumping");

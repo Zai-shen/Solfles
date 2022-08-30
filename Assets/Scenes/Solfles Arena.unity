@@ -30136,11 +30136,6 @@ PrefabInstance:
       objectReference: {fileID: 1422264690}
     - target: {fileID: 7937504560451197574, guid: f32a5e8c40436264cba44fad176ea992,
         type: 3}
-      propertyPath: WinRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937504560451197574, guid: f32a5e8c40436264cba44fad176ea992,
-        type: 3}
       propertyPath: WinScreen
       value: 
       objectReference: {fileID: 7860721610172880605}
