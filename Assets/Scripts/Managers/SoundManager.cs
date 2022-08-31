@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] Slider _globalVolumeSlider;
-    [SerializeField] Slider _musicVolumeSlider;
-    [SerializeField] Slider _effectVolumeSlider;
+    [SerializeField] private Slider _globalVolumeSlider;
+    [SerializeField] private Slider _musicVolumeSlider;
+    [SerializeField] private Slider _effectVolumeSlider;
 
-    void Start()
+    private void Awake()
     {
         if(!PlayerPrefs.HasKey("MainVolume"))
         {
@@ -30,32 +30,45 @@ public class SoundManager : MonoBehaviour
     public void ChangeMainVolume()
     { 
         AudioManager.Instance.GlobalMixer.SetFloat("MainVolume", _globalVolumeSlider.value);
-        Save();
+        PlayerPrefs.SetFloat("MainVolume", _globalVolumeSlider.value);
     }  
     
     public void ChangeMusicVolume()
     { 
         AudioManager.Instance.GlobalMixer.SetFloat("MusicVolume", _musicVolumeSlider.value);
-        Save();
+        PlayerPrefs.SetFloat("MusicVolume", _musicVolumeSlider.value);
     }   
     
     public void ChangeEffectVolume()
     { 
         AudioManager.Instance.GlobalMixer.SetFloat("EffectVolume", _effectVolumeSlider.value);
-        Save();
+        PlayerPrefs.SetFloat("EffectVolume", _effectVolumeSlider.value);
     }
 
     public void Load()
     {
-        _globalVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
-        _musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-        _effectVolumeSlider.value = PlayerPrefs.GetFloat("EffectVolume");
+        float _mainVolume = PlayerPrefs.GetFloat("MainVolume");
+        float _musicVolume= PlayerPrefs.GetFloat("MusicVolume");
+        float _effectVolume = PlayerPrefs.GetFloat("EffectVolume");
+        
+        LoadMixers(_mainVolume, _musicVolume, _effectVolume);
+        LoadUI(_mainVolume, _musicVolume, _effectVolume);
     }
 
-    private void Save()
+    private void LoadMixers(float mainVol, float musicVol, float effectVol)
     {
-        PlayerPrefs.SetFloat("MainVolume", _globalVolumeSlider.value);
-        PlayerPrefs.SetFloat("MusicVolume", _musicVolumeSlider.value);
-        PlayerPrefs.SetFloat("EffectVolume", _effectVolumeSlider.value);
+        AudioManager.Instance.GlobalMixer.SetFloat("MainVolume", mainVol);
+        AudioManager.Instance.GlobalMixer.SetFloat("MusicVolume", musicVol);
+        AudioManager.Instance.GlobalMixer.SetFloat("EffectVolume", effectVol);
+    }
+    
+    private void LoadUI(float mainVol, float musicVol, float effectVol)
+    {
+        if (!_globalVolumeSlider && _musicVolumeSlider && _effectVolumeSlider)
+            return;
+        
+        _globalVolumeSlider.value = mainVol;
+        _musicVolumeSlider.value = musicVol;
+        _effectVolumeSlider.value = effectVol;
     }
 }
