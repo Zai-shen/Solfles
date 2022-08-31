@@ -97,11 +97,7 @@ public class Friend : MonoBehaviour
             {
                 if (DistanceToPlayer() <= FindRange)
                 {
-                    HealthBar.transform.parent.gameObject.SetActive(true);
-                    _found = true;
-                    Globals.Friends.Add(this.gameObject);
-                    _animator.SetTrigger("Jumping");
-                    _player.FriendFound.Invoke();
+                    SetFriendFound();
                 }
             }
             else
@@ -120,7 +116,16 @@ public class Friend : MonoBehaviour
             _attack.DoAttack();
         }
     }
-    
+
+    private void SetFriendFound()
+    {
+        _found = true;
+        HealthBar.transform.gameObject.SetActive(_found);
+        Globals.Friends.Add(this.gameObject);
+        _animator.SetTrigger("Jumping");
+        _player.FriendFound.Invoke();
+    }
+
     private void ChasePlayer()
     {
         if (DistanceToPlayer() <= _maxDistanceToPlayer)

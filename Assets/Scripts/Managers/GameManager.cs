@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float WinRadius = 5f;
     private int _activeScene = 0;
     private bool _audioStarted;
+    private bool _winConditionFulfilled;
     private bool _didWin;
 
     public Action ResetPause;
@@ -65,8 +66,17 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
+
+        if (Globals.Friends.Count == 4 && !_winConditionFulfilled)
+        {
+            _winConditionFulfilled = true;
+            foreach (Healthbar _healthbar in FindObjectsOfType<Healthbar>())
+            {
+                _healthbar.SetFound();
+            }
+        }
         
-        if (!_didWin && Globals.Friends.Count == 4 && Vector3.Distance(_player.position, Vector3.zero) <= WinRadius)
+        if (!_didWin && _winConditionFulfilled && Vector3.Distance(_player.position, Vector3.zero) <= WinRadius)
         {
             foreach (GameObject _friend in Globals.Friends)
             {
