@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         if (daTarget != null)
         {
             _attack.Target = daTarget;
-            _attack.DoAttack();
+            _attack.DoStartAttack();
         }
     }
 

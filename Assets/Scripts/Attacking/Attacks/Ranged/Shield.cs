@@ -18,16 +18,16 @@ public class Shield : RangedAttack
         _shieldMatColor = _shieldMat.color;
     }
 
-    protected override void EarlyAttack()
+    protected override IEnumerator AttackDuringAnimation()
     {
-        base.EarlyAttack();
         StartCoroutine(ShieldFX(Cooldown));
+        yield return base.AttackDuringAnimation();
     }
 
-    protected override void LateAttack()
+    protected override void DoAttack()
     {
-        base.LateAttack();
-        if (!Target) return;
+        base.DoAttack();
+        if(!Target) return;
         
         Vector3 _spawnDistance = new Vector3(0, 1.25f, 0.4f);
         Vector3 _spawnDirection = (new Vector3(0,0, _spawnDistance.z) - transform.position).normalized;

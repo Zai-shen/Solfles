@@ -113,7 +113,7 @@ public class Friend : MonoBehaviour
         if (daTarget != null && _found)
         {
             _attack.Target = daTarget;
-            _attack.DoAttack();
+            _attack.DoStartAttack();
         }
     }
 

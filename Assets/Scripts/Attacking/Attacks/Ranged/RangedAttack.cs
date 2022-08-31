@@ -4,20 +4,9 @@ public class RangedAttack : Attack
 {
     public GameObject Projectile;     
     
-    protected override void EarlyAttack()
+    protected override void DoAttack()
     {
         if(!Target) return;
-        base.EarlyAttack();
+        base.DoAttack();
     }
-    protected override void MainAttack()
-    {
-        if(!Target) return;
-        base.MainAttack();
-    }
-    protected override void LateAttack()
-    {
-        if(!Target) return;
-        base.LateAttack();
-    }
-    
 }

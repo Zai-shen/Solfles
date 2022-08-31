@@ -15,6 +15,7 @@ public class Attack : MonoBehaviour
     public float AttackRange = 1f;
     public float Cooldown = 1f;
     public bool OnCooldown;
+    [Range(0,100)]public float TriggerAtAnimationPercentage = 0f;
     
     #endregion
 
@@ -23,39 +24,24 @@ public class Attack : MonoBehaviour
         EAnimator.SetFloat("AttacksPerSecond", 1 / Cooldown);
     }
 
-    public void DoAttack()
+    public void DoStartAttack()
     {
         if (!Target) return;
         if (enabled == false) return;
         if (OnCooldown) return;
 
-        EarlyAttack();
-        Invoke(nameof(MainAttack), Cooldown / 2f);
-        Invoke(nameof(LateAttack), Cooldown);
-
-        OnCooldown = true;
+        StartCoroutine(AttackDuringAnimation());
         Invoke(nameof(ResetAttack), Cooldown);
     }
 
-    protected virtual void MainAttack()
+    protected virtual IEnumerator AttackDuringAnimation()
     {
-        if (!Target)
-        {
-            Debug.Log("No Target!");
-            return;
-        }
+        OnCooldown = true;
+        yield return new WaitForSeconds((Cooldown / 100f) * TriggerAtAnimationPercentage);
+        DoAttack();
     }
 
-    protected virtual void EarlyAttack()
-    {
-        if (!Target)
-        {
-            Debug.Log("No Target!");
-            return;
-        }
-    }
-
-    protected virtual void LateAttack()
+    protected virtual void DoAttack()
     {
         if (!Target)
         {

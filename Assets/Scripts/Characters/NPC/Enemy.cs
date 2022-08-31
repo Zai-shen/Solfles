@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
         _animator.SetFloat("MovSpeed", 0f);
         FaceTarget();
         
-        _attack.DoAttack();
+        _attack.DoStartAttack();
     }
 
     private void ChasePlayer()

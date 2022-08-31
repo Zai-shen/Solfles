@@ -4,10 +4,10 @@ public class Throw : RangedAttack
 {
     public float ShotForce = 15f;
 
-    protected override void MainAttack()
+    protected override void DoAttack()
     {
-        base.MainAttack();
-        if (!Target) return;
+        base.DoAttack();
+        if(!Target) return;
 
         Vector3 _spawnDistance = new Vector3(0, 1.25f, 0f);
         Vector3 _spawnLocation = (transform.position + new Vector3(0, _spawnDistance.y, 0));

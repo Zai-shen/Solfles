@@ -6085,6 +6085,11 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 184355316}
+    - target: {fileID: 7397909516486848271, guid: f270426754892a348bd16425b4ac5d58,
+        type: 3}
+      propertyPath: AttackDamage
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f270426754892a348bd16425b4ac5d58, type: 3}
 --- !u!4 &186400108 stripped
@@ -15506,6 +15511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049020876601339079, guid: f26cce4f74d868044908bcff7485605a,
+        type: 3}
+      propertyPath: AttackRange
+      value: 5.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26cce4f74d868044908bcff7485605a, type: 3}
@@ -34984,6 +34994,11 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 702609233}
+    - target: {fileID: 6950142817159340309, guid: 8a6458c01f1da58419428b34faf1268f,
+        type: 3}
+      propertyPath: AttackDamage
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6458c01f1da58419428b34faf1268f, type: 3}
 --- !u!1001 &1100527390
@@ -35259,7 +35274,7 @@ PrefabInstance:
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7729531293556682120, guid: 5b009524e41916847a3d0087aaa8d688,
         type: 3}
@@ -44696,6 +44711,11 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 329981896}
+    - target: {fileID: 4570364095536131718, guid: 22877f2bf3b437c4f9b4252fe9d0311f,
+        type: 3}
+      propertyPath: AttackDamage
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5623445128945577112, guid: 22877f2bf3b437c4f9b4252fe9d0311f,
         type: 3}
       propertyPath: m_Name
@@ -45451,6 +45471,11 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1829781535}
+    - target: {fileID: 8766707632229858872, guid: 69a482675fadeb040847edcee2a665b4,
+        type: 3}
+      propertyPath: AttackDamage
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a482675fadeb040847edcee2a665b4, type: 3}
 --- !u!4 &1378427242 stripped
@@ -58328,7 +58353,7 @@ Transform:
   - {fileID: 329981897}
   - {fileID: 702609234}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1792546566
 GameObject:
@@ -69785,7 +69810,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2121513955
 PrefabInstance:
@@ -70925,7 +70950,7 @@ PrefabInstance:
     - target: {fileID: 6459624418120552917, guid: 17988c711b93f094188750a2132e4758,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6459624418120552917, guid: 17988c711b93f094188750a2132e4758,
         type: 3}
