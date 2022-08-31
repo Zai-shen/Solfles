@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _effectVolumeSlider;
 
-    private void Awake()
+    private void Start()
     {
         if(!PlayerPrefs.HasKey("MainVolume"))
         {
@@ -70,5 +70,15 @@ public class SoundManager : MonoBehaviour
         _globalVolumeSlider.value = mainVol;
         _musicVolumeSlider.value = musicVol;
         _effectVolumeSlider.value = effectVol;
+    }
+    
+    public float VolToAttenuation(float vol)
+    {
+        return (1f - Mathf.Sqrt(vol)) * -80f;
+    }
+    
+    public float AttenuationToVol(float attenuation)
+    {
+        return Mathf.Pow(-((attenuation / -80f) - 1f), 2f);
     }
 }
