@@ -5,7 +5,6 @@ public class Punch : MeleeAttack
     protected override void DoAttack()
     {
         base.DoAttack();
-        if(!Target) return;
         
         Vector3 _spawnDistance = new Vector3(0, 1f, 1f);
         Vector3 _spawnDirection = (Target.position - transform.position).normalized;

@@ -2,11 +2,15 @@
 
 public class MeleeAttack : Attack
 {
+    public float HitDistanceTolerance = 1f;
     public GameObject HitEffect;
 
-    protected override void DoAttack()
+    protected override void CheckIsValidAttack()
     {
-        if(!Target) return;
-        base.DoAttack();
+        base.CheckIsValidAttack();
+        if (!IsValidAttack || ((DistanceToTarget() - HitDistanceTolerance) >= AttackRange))
+        {
+            IsValidAttack = false;
+        }
     }
 }

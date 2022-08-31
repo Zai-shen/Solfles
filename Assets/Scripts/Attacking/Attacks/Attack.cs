@@ -18,7 +18,11 @@ public class Attack : MonoBehaviour
     [Range(0,100)]public float TriggerAtAnimationPercentage = 0f;
     
     #endregion
+    
+    public AudioSource AttackSoundEffect;
 
+    protected bool IsValidAttack;
+    
     private void Start()
     {
         EAnimator.SetFloat("AttacksPerSecond", 1 / Cooldown);
@@ -38,18 +42,32 @@ public class Attack : MonoBehaviour
     {
         OnCooldown = true;
         yield return new WaitForSeconds((Cooldown / 100f) * TriggerAtAnimationPercentage);
-        DoAttack();
+        CheckIsValidAttack();
+        if (IsValidAttack)
+        {
+            DoAttack();
+        }
+    }
+
+    protected virtual void CheckIsValidAttack()
+    {
+        if (Target)
+            IsValidAttack = true;
     }
 
     protected virtual void DoAttack()
     {
-        if (!Target)
-        {
-            Debug.Log("No Target!");
-            return;
-        }
+        PlayAttackSound();
     }
 
+    protected void PlayAttackSound()
+    {
+        if (AttackSoundEffect)
+        {
+            AttackSoundEffect.Play();
+        }
+    }
+    
     private void ResetAttack()
     {
         OnCooldown = false;

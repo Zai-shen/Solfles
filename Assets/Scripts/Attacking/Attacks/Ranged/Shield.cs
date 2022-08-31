@@ -27,8 +27,8 @@ public class Shield : RangedAttack
     protected override void DoAttack()
     {
         base.DoAttack();
-        if(!Target) return;
-        
+
+        Vector3 midEnemyBody = new Vector3(0,1f,0);
         Vector3 _spawnDistance = new Vector3(0, 1.25f, 0.4f);
         Vector3 _spawnDirection = (new Vector3(0,0, _spawnDistance.z) - transform.position).normalized;
         Vector3 _spawnLocation = (transform.position + new Vector3(0, _spawnDistance.y, 0)) + (_spawnDirection * _spawnDistance.z);
@@ -37,7 +37,7 @@ public class Shield : RangedAttack
         Projectile pShot = shot.GetComponent<Projectile>();
         pShot.ShotForce = ShotForce;
         pShot.ShotDamage = AttackDamage;
-        pShot.Shoot((Target.position - _spawnLocation).normalized);
+        pShot.Shoot(((Target.position + midEnemyBody) - _spawnLocation).normalized);
     }
 
     private IEnumerator ShieldFX(float duration)

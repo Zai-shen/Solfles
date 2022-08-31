@@ -7,8 +7,7 @@ public class Cast : RangedAttack
     protected override void DoAttack()
     {
         base.DoAttack();
-        if(!Target) return;
-        
+
         Vector3 midPlayerBody = new Vector3(0,1.85f / 2f,0);
         Vector3 _spawnDistance = new Vector3(-0.3f, 1.35f, 0.3f);
         Vector3 _spawnDirection = (Target.position - transform.position).normalized;
