@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public Player Player;
-    public PauseMenu DeathScreen;
+    public LoseMenu DeathScreen;
 
     #region Singleton
     
@@ -43,11 +43,18 @@ public class PlayerManager : MonoBehaviour
         Instance = this;
     }
 
+    private void OnDeath()
+    {
+        DeathScreen.Pause();
+        AudioManager.Instance.StopPlaying();
+        AudioManager.Instance.PlayContinuous(AudioManager.Instance.MusicClips[3]);
+    }
+
     private void Start()
     {
         if (DeathScreen)
         {
-            Player.Health.OnDeath += DeathScreen.Pause;
+            Player.Health.OnDeath += OnDeath;
         }
     }
     
@@ -55,7 +62,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (DeathScreen)
         {
-            Player.Health.OnDeath -= DeathScreen.Pause;
+            Player.Health.OnDeath -= OnDeath;
         }
     }
 }

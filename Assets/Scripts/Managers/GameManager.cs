@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public PauseMenu PauseMenu;
-    public PauseMenu WinScreen;
+    public WinMenu WinScreen;
     private bool _gamePaused;
     private Transform _player;
     public float WinRadius = 5f;
@@ -111,6 +111,8 @@ public class GameManager : MonoBehaviour
     {
         _didWin = true;
         WinScreen.Pause();
+        AudioManager.Instance.StopPlaying();
+        AudioManager.Instance.PlayContinuous(AudioManager.Instance.MusicClips[2]);
     }
     
     private void OnDrawGizmosSelected(){
