@@ -711,7 +711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eb75b115b45e17c47a2bd9300d1c6fc7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da8dbc2e253073441a9def95af799210, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1061,6 +1061,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1959081115}
     m_Modifications:
+    - target: {fileID: 330096660850920098, guid: 35ed1a91707825b4aaf4866039c979d4,
+        type: 3}
+      propertyPath: m_text
+      value: "created by Zaishen and Triarr\ngameplay - Zaishen\nart director - Triarr\n\n\nassets
+        used: \n\n8-bit Fantasy & Adventure Music\nEnvironment Pack: Free Forest
+        Sample\nFantasy Music Collection FREE Pack\nFootsteps - Essentials\nFree
+        Deadly Kombat\nLow-Poly Simple Nature Pack\nMinimal UI Sounds\nPOLY - Lite
+        Survival Collection\nQuick Outline\nRPG Essentials Sound Effects - FREE!\nWolf
+        Animated\nPOLYGON Dungeons - Low Poly 3D Art by Synty"
+      objectReference: {fileID: 0}
     - target: {fileID: 330096661058444257, guid: 35ed1a91707825b4aaf4866039c979d4,
         type: 3}
       propertyPath: m_Name
